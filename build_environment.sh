@@ -1,5 +1,5 @@
 #!/bin/bash
-# Builder modified: Mon July 06, 2020 @ 05:32:47 EDT
+# Builder modified: Mon July 06, 2020 @ 06:22:16 EDT
 
 if [[ $UID != 0 ]]; then
     echo "Please run this script using sudo: "
@@ -65,6 +65,9 @@ sed -i "s/TEMPLATE/$bld_sitename/g" $bld_abbrev.conf
 echo "";
 echo "Generating default site.";
 sudo mkdir -p pagesource/css;
+echo "updating refs in $(pwd)/index.html";
+sed -i "s/apc/$bld_abbrev/g" index.html;
+sed -i "s/TEMPLATE/$bld_sitename/g" index.html;
 mv index.html pagesource;
 mv main.css pagesource/css;
 cd pagesource/css;
@@ -88,5 +91,31 @@ echo "updating refs in $(pwd)/flag-available.sh";
 sed -i "s/apc/$bld_abbrev/g" flag-available.sh;
 echo "updating refs in $(pwd)/flag-unavailable.sh";
 sed -i "s/apc/$bld_abbrev/g" flag-unavailable.sh;
+sudo chmod +x *.sh;
+cd $bld_self;
+echo "";
+echo "Running first-time handoff."
+./build.sh;
+./flag-available.sh;
+echo "";
+echo "Writing redirect instructions to /etc/hosts ";
+echo "127.0.0.1 www.$bld_sitename.com" >> /etc/hosts;
 cd $bld_self/..;
+
+# EXIT SUMMARY
+echo "";
+echo "";
+echo "";
+echo "The new site is now available at http://www.$bld_sitename.com (from this machine only). To view this site on a remote machine, simply add the following entry to your hosts file:";
+echo "";
+echo "$(curl icanhazip.com) www.$bld_sitename.com";
+echo "";
+echo "The hosts file can be found in the following locations; ";
+echo "Windows: C:\\Windows\\System32\\drivers\\etc\\hosts";
+echo "WSL: /mnt/c/Windows/System32/drivers/etc/hosts ";
+echo "Linux: /etc/hosts";
+echo "OSX: /private/etc/hosts  ??? maybe? idk osx";
+echo "";
+echo "To disable visibility of the site, use $bld_self/.sh/flag_unavailable.sh";
+echo "Note that a domain redirect must also be configured for the site to be publicly available.";
 exit 0;
