@@ -1,5 +1,5 @@
 #!/bin/bash
-# Builder modified: Mon July 06, 2020 @ 05:03:50 EDT
+# Builder modified: Mon July 06, 2020 @ 05:16:56 EDT
 
 if [[ $UID != 0 ]]; then
     echo "Please run this script using sudo: "
@@ -33,9 +33,12 @@ done;
 echo "";
 echo "Creating Directories. Hold on to your seat!";
 sudo mkdir -p /var/www/$bld_abbrev/html;
+echo "      /var/www/$bld_abbrev/html created."
 sudo mkdir -p /var/www/$bld_abbrev/logs;
+echo "      /var/www/$bld_abbrev/logs created."
 sudo mkdir -p /etc/httpd/sites-available;
 sudo mkdir -p /etc/httpd/sites-enabled;
+echo "      /etc/httpd/sites-* confirmed/created." 
 echo "";
 echo "Setting up permissions so SELinux doesn't throw a fit...";
 echo " ~~~ What are you going to do SELinux? Cry? Piss your pants? Maybe shit and cum? ~~~ ";
@@ -72,6 +75,15 @@ echo "New root set at $bld_self";
 cd $bld_self;
 echo "";
 echo "Building some luxuries.";
-mkdir .sh;
-
+cd .sh;
+echo "updating refs in $(pwd)/build.conf";
+sed -i "s/apc/$build_abbrev/g" build.conf;
+echo "updating refs in $(pwd)/clean.conf";
+sed -i "s/apc/$build_abbrev/g" clean.conf;
+echo "updating refs in $(pwd)/rebuild.conf";
+sed -i "s/apc/$build_abbrev/g" rebuild.conf;
+echo "updating refs in $(pwd)/flag-available.conf";
+sed -i "s/apc/$build_abbrev/g" flag-available.conf;
+echo "updating refs in $(pwd)/flag-unavailable.conf";
+sed -i "s/apc/$build_abbrev/g" flag-unavailable.conf;
 exit 0;
