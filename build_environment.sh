@@ -1,5 +1,5 @@
 #!/bin/bash
-# Builder modified: Mon July 06, 2020 @ 05:16:56 EDT
+# Builder modified: Mon July 06, 2020 @ 05:19:42 EDT
 
 if [[ $UID != 0 ]]; then
     echo "Please run this script using sudo: "
@@ -53,6 +53,7 @@ cd $bld_self/..;
 sudo mkdir -p $bld_sitename;
 sudo chown $USER:$USER $bld_sitename;
 sudo cp -r $bld_self/* $bld_sitename;
+sudo cp -r $bld_self/.sh/* $bld_sitname/.sh/;
 cd $bld_sitename;
 mv apc.conf $bld_abbrev.conf
 git init;
