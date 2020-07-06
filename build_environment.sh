@@ -1,5 +1,5 @@
 #!/bin/bash
-# Builder modified: Mon July 06, 2020 @ 04:42:22 EDT
+# Builder modified: Mon July 06, 2020 @ 04:43:28 EDT
 
 if [[ $UID != 0 ]]; then
     echo "Please run this script using sudo: "
@@ -64,8 +64,8 @@ cd ..;
 cd ..;
 bld_self=$(git rev-parse --show-toplevel 2>&1);
 echo "New root set at $bld_self";
-cd $bld_self";
+cd $bld_self;
 echo "";
 echo "Building some luxuries.";
-mkdir .sh";
+mkdir .sh;
 exit 0;
