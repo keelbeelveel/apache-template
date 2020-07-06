@@ -1,5 +1,5 @@
 #!/bin/bash
-# Builder modified: Mon July 06, 2020 @ 05:28:32 EDT
+# Builder modified: Mon July 06, 2020 @ 05:30:26 EDT
 
 if [[ $UID != 0 ]]; then
     echo "Please run this script using sudo: "
@@ -78,15 +78,15 @@ cd $bld_self;
 echo "";
 echo "Building some luxuries.";
 cd .sh;
-echo "updating refs in $(pwd)/build.conf";
-sed -i "s/apc/$build_abbrev/g" build.conf;
-echo "updating refs in $(pwd)/clean.conf";
-sed -i "s/apc/$build_abbrev/g" clean.conf;
-echo "updating refs in $(pwd)/rebuild.conf";
-sed -i "s/apc/$build_abbrev/g" rebuild.conf;
-echo "updating refs in $(pwd)/flag-available.conf";
-sed -i "s/apc/$build_abbrev/g" flag-available.conf;
-echo "updating refs in $(pwd)/flag-unavailable.conf";
-sed -i "s/apc/$build_abbrev/g" flag-unavailable.conf;
+echo "updating refs in $(pwd)/build.sh";
+sed -i "s/apc/$build_abbrev/g" build.sh;
+echo "updating refs in $(pwd)/clean.sh";
+sed -i "s/apc/$build_abbrev/g" clean.sh;
+echo "updating refs in $(pwd)/rebuild.sh";
+sed -i "s/apc/$build_abbrev/g" rebuild.sh;
+echo "updating refs in $(pwd)/flag-available.sh";
+sed -i "s/apc/$build_abbrev/g" flag-available.sh;
+echo "updating refs in $(pwd)/flag-unavailable.sh";
+sed -i "s/apc/$build_abbrev/g" flag-unavailable.sh;
 cd $bld_self/..;
 exit 0;
