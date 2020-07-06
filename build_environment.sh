@@ -1,5 +1,5 @@
 #!/bin/bash
-# Builder modified: Mon July 06, 2020 @ 05:21:20 EDT
+# Builder modified: Mon July 06, 2020 @ 05:28:32 EDT
 
 if [[ $UID != 0 ]]; then
     echo "Please run this script using sudo: "
@@ -53,7 +53,8 @@ cd $bld_self/..;
 sudo mkdir -p $bld_sitename;
 sudo chown $USER:$USER $bld_sitename;
 sudo cp -r $bld_self/* $bld_sitename;
-sudo cp -r $bld_self/.sh $bld_sitname;
+sudo mkdir $bld_sitename/.sh;
+sudo cp $bld_self/.sh/* $bld_sitename/.sh;
 cd $bld_sitename;
 mv apc.conf $bld_abbrev.conf
 git init;
@@ -87,4 +88,5 @@ echo "updating refs in $(pwd)/flag-available.conf";
 sed -i "s/apc/$build_abbrev/g" flag-available.conf;
 echo "updating refs in $(pwd)/flag-unavailable.conf";
 sed -i "s/apc/$build_abbrev/g" flag-unavailable.conf;
+cd $bld_self/..;
 exit 0;
