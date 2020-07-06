@@ -1,5 +1,5 @@
 #!/bin/bash
-# Builder modified: Mon July 06, 2020 @ 04:49:37 EDT
+# Builder modified: Mon July 06, 2020 @ 04:56:01 EDT
 
 if [[ $UID != 0 ]]; then
     echo "Please run this script using sudo: "
@@ -53,6 +53,11 @@ sudo cp -r $bld_self/* $bld_sitename;
 cd $bld_sitename;
 mv apc.conf $bld_abbrev.conf
 git init;
+echo "";
+echo "Writing configs.";
+sed -i 's/apc/$bld_abbrev/g' $bld_abbrev.conf
+sed -i 's/TEMPLATE/$bld_sitename/g' $bld_abbrev.conf
+
 echo "";
 echo "Generating default site.";
 sudo mkdir -p pagesource/css;
