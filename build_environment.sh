@@ -1,5 +1,5 @@
 #!/bin/bash
-# Builder modified: Mon July 06, 2020 @ 04:08:14 EDT
+# Builder modified: Mon July 06, 2020 @ 04:11:30 EDT
 
 if [[ $UID != 0 ]]; then
     echo "Please run this script using sudo: "
@@ -11,12 +11,12 @@ confirm="no"
 until [ "$confirm" = "yes" ]; do
     confirm="no";
     echo ""
-    read -p 'Specify SiteName (eg. "Google"): ' bld_sitename;
-    read -p -N3 'Specify Three-Letter Abbreviation (eg. "goo"): ' bld_abbrev;
+    read -p "Specify SiteName (eg. \"Google\"): " bld_sitename;
+    read -p -N3 "Specify Three-Letter Abbreviation (eg. \"goo\"): " bld_abbrev;
     echo "Just to confirm, you specified: ";
     echo "      sitename: $bld_sitename ";
     echo "      abbreviation: $bld_abbrev ";
-    read "Is this correct? [Y/n] " response;
+    read -p "Is this correct? [Y/n] " response;
     response=${response,,};    # tolower
     if [[ "$response" =~ ^(yes|y)$ ]]; then
         confirm="yes";
