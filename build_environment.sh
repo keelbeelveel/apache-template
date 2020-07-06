@@ -1,5 +1,5 @@
 #!/bin/bash
-# Builder modified: Mon July 06, 2020 @ 04:14:06 EDT
+# Builder modified: Mon July 06, 2020 @ 04:21:01 EDT
 
 if [[ $UID != 0 ]]; then
     echo "Please run this script using sudo: "
@@ -11,8 +11,16 @@ confirm="no"
 until [ "$confirm" = "yes" ]; do
     confirm="no";
     echo ""
-    read -p "Specify SiteName (eg. \"Google\"): " bld_sitename;
-    read -p "Specify Three-Letter Abbreviation (eg. \"goo\"): " bld_abbrev;
+    read -rp "Specify SiteName (eg. \"Google\"): " bld_sitename;
+    inputgood = "no";
+    until [ "$inputgood" = "yes" ]; do
+        read -rp "Specify Three-Letter Abbreviation (eg. \"goo\"): " bld_abbrev;
+        if [ ${#bld_abbrev} = 3 ]; then
+            inputgood="yes"
+        else
+            echo "ERR. Abbreviation must be three letters."
+        fi
+    done;
     echo "Just to confirm, you specified: ";
     echo "      sitename: $bld_sitename ";
     echo "      abbreviation: $bld_abbrev ";
