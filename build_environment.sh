@@ -1,5 +1,5 @@
 #!/bin/bash
-# Builder modified: Mon July 06, 2020 @ 05:01:02 EDT
+# Builder modified: Mon July 06, 2020 @ 05:03:50 EDT
 
 if [[ $UID != 0 ]]; then
     echo "Please run this script using sudo: "
@@ -57,7 +57,6 @@ echo "";
 echo "Writing configs.";
 sed -i "s/apc/$bld_abbrev/g" $bld_abbrev.conf
 sed -i "s/TEMPLATE/$bld_sitename/g" $bld_abbrev.conf
-
 echo "";
 echo "Generating default site.";
 sudo mkdir -p pagesource/css;
@@ -74,4 +73,5 @@ cd $bld_self;
 echo "";
 echo "Building some luxuries.";
 mkdir .sh;
+
 exit 0;
