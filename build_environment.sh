@@ -1,5 +1,5 @@
 #!/bin/bash
-# Builder modified: Mon July 06, 2020 @ 05:30:26 EDT
+# Builder modified: Mon July 06, 2020 @ 05:32:47 EDT
 
 if [[ $UID != 0 ]]; then
     echo "Please run this script using sudo: "
@@ -79,14 +79,14 @@ echo "";
 echo "Building some luxuries.";
 cd .sh;
 echo "updating refs in $(pwd)/build.sh";
-sed -i "s/apc/$build_abbrev/g" build.sh;
+sed -i "s/apc/$bld_abbrev/g" build.sh;
 echo "updating refs in $(pwd)/clean.sh";
-sed -i "s/apc/$build_abbrev/g" clean.sh;
+sed -i "s/apc/$bld_abbrev/g" clean.sh;
 echo "updating refs in $(pwd)/rebuild.sh";
-sed -i "s/apc/$build_abbrev/g" rebuild.sh;
+sed -i "s/apc/$bld_abbrev/g" rebuild.sh;
 echo "updating refs in $(pwd)/flag-available.sh";
-sed -i "s/apc/$build_abbrev/g" flag-available.sh;
+sed -i "s/apc/$bld_abbrev/g" flag-available.sh;
 echo "updating refs in $(pwd)/flag-unavailable.sh";
-sed -i "s/apc/$build_abbrev/g" flag-unavailable.sh;
+sed -i "s/apc/$bld_abbrev/g" flag-unavailable.sh;
 cd $bld_self/..;
 exit 0;
